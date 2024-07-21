@@ -1,5 +1,5 @@
 {
-  "name": "coach-personal-con-ia",
+  "name": "andar-bien-com",
   "version": "0.1.0",
   "private": true,
   "engines": {
@@ -8,34 +8,47 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "prisma generate && next build",
     "start": "next start",
     "lint": "next lint",
-    "preinstall": "node -e \"if(process.versions.node.split('.')[0] < 20) throw new Error('Node version >= 20 is required')\"",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "generate-api-key": "node scripts/generateApiKey.js",
+    "preinstall": "node -e \"const v = process.versions.node; const major = parseInt(v.split('.')[0], 10); if(major !== 20) { console.log('\\x1b[31m\\x1b[1m%s\\x1b[0m', '>>> Error: Node version 20 is required.\\nCurrent version: ' + v + '\\n'); process.exit(1); } else { console.log('\\x1b[32m\\x1b[1m%s\\x1b[0m', 'Success: Using Node version: ' + v + '\\n'); }\""
   },
   "dependencies": {
-    "@clerk/nextjs": "^5.2.3",
-    "@nextui-org/react": "^2.4.2",
-    "classnames": "^2.5.1",
-    "framer-motion": "^11.3.2",
-    "next": "14.2.5",
-    "react": "^18",
-    "react-dom": "^18"
+    "@clerk/nextjs": "^5.2.4",
+    "@nextui-org/react": "^2.4.3",
+    "@prisma/client": "^5.17.0",
+    "@tanstack/react-query": "^5.51.5",
+    "@trpc/client": "^11.0.0-rc.466",
+    "@trpc/next": "^11.0.0-rc.466",
+    "@trpc/react-query": "^11.0.0-rc.466",
+    "@trpc/server": "^11.0.0-rc.466",
+    "framer-motion": "^11.3.6",
+    "next": "^14.2.5",
+    "next-themes": "^0.3.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@iconify/react": "^5.0.1",
+    "@types/lodash": "^4.17.7",
+    "@types/node": "20.14.11",
+    "@types/react": "18.3.3",
+    "@types/react-dom": "18.3.0",
+    "autoprefixer": "^10.4.19",
     "eslint": "^8",
-    "eslint-config-next": "14.2.5",
+    "eslint-config-next": "^14.2.5",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.1.3",
-    "postcss": "^8",
+    "postcss": "^8.4.39",
     "prettier": "^3.3.2",
-    "tailwindcss": "^3.4.1",
+    "prisma": "^5.17.0",
+    "tailwindcss": "^3.4.6",
     "tailwindcss-animate": "^1.0.7",
+    "ts-node": "^10.9.2",
     "typescript": "^5"
   }
 }

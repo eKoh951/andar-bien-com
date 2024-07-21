@@ -1,15 +1,17 @@
-import { SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
+import { Metadata } from 'next'
+import { serverClient } from './_trpc/serverClient'
 
-export default function Home() {
-  return (
-    <main>
-      <h1>Bienestar Personal App uwu</h1>
-      <SignedOut>
-        <SignInButton />
-      </SignedOut>
-      <SignedIn>
-        <UserButton />
-      </SignedIn>
-    </main>
-  )
+export const metadata: Metadata = {
+  title: 'AndarBien.com',
+}
+
+export default async function Page({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined }
+}) {
+  const data = await serverClient.getData()
+  console.log('data', data)
+
+  return <div className="container mx-auto p-4">hi</div>
 }
